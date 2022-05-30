@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>Lab 6 - Part 2</title>
+		<meta charset = "utf-8">
+		<meta name = "viewport" content="width=device-width, initial-scale=1.0">
+		<style>
+			input[type=text],
+			select {
+				width: 90%;
+				padding: 10px 30px;
+				margin: 15px;
+				border: 1px solid black;
+			}
+
+			input[type=submit] {
+				width: 55%;
+				background-color: #232323;
+				color: white;
+				padding: 14px 20px;
+				margin: 8px 0;
+				border: none;
+				border-radius: 40px;
+				cursor: pointer;
+			}
+
+			div {
+				background-color: pink;
+				
+			}
+		</style>
+	</head>
+
+	<body>
+		<div>
+			<form name="form" onsubmit="return(validate())" method="post">
+				<h1>CPS530 Lab6 Part 2</h1>
+				<br>
+				First Name:<input type="text" required name="first"><br>
+				Last Name:<input type="text" required name="last"><br>
+				Address:<input type="text" required name="address"><br>
+				Phone Number:<input type="text" required name="phone"><br>
+				<input type="submit" formaction="http://www2.scs.ryerson.ca/~habdulha/cgi-bin/lab6pt2.py" value="Submit to Python File">
+				<input type="submit" formaction="http://www2.scs.ryerson.ca/~habdulha/cgi-bin/lab6pt2.rb" value="Submit to Ruby File">
+			</form>
+		</div>
+		<script type="text/javascript">
+			function validate() {
+				var firstName = document.form.first;
+				var lastName = document.form.last;
+				var phone = document.form.phone;
+				var regexName = new RegExp(/^[a-zA-Z]+$/);
+				var regexPhone = new RegExp(/^[0-9]{3}[-]{1}[0-9]{3}[-]{1}[0-9]{4}$/);
+
+				if (!regexName.test(firstName.value) || !regexName.test(lastName.value)){
+					alert("Name must be comprised of letters only");
+					return false;
+				}
+				if (!regexPhone.test(phone.value)){
+					alert("Phone be in the format of 123-456-7890");
+					return false;
+				}
+			}
+		</script>
+	</body>
+</html>
